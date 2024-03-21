@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "flask-stimulus-demo"
+version = "0.1.0"
+description = ""
+authors = ["Stefane Fermigier <sf@abilian.com>"]
+readme = "README.md"
+
+packages = [
+    { include = "*.py", from = "src" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.10,<4"
+flask = "^3.0.2"
+flask-vite = "^0.3.7"
+
+
+[tool.poetry.group.dev.dependencies]
+abilian-devtools = "^0.5.20"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Stimulus: {{ current_page.title }} Example</title>
+  <link rel="stylesheet" href="/static/main.css">
+  <link rel="stylesheet" href="/static/examples.css">
+  {#  <script src="/static/main.js" defer></script>#}
+</head>
+
+<body>
+<main>
+  <div class="sidebar">
+    <img id="logo" src="/static/logo.svg" class="logo" alt="Stimulus logo" data-turbolinks-permanent>
+
+    <ul class="nav">
+      {% for page in pages %}
+        <li>
+          <a href="{{ page.path }}" class="{{ 'active' if page.path == current_page.path else '' }}">
+            {{ page.title }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="container container--{{ current_page.path[1:] }}">
+    {% block content %}{% endblock %}
+  </div>
+
+</main>
+</body>
+</html>
