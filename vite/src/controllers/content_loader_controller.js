@@ -1,46 +1,46 @@
-import { Controller } from "@hotwired/stimulus"
+import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["item"]
-  static values = { url: String, refreshInterval: Number }
+  static targets = ["item"];
+  static values = { url: String, refreshInterval: Number };
 
   connect() {
-    this.load()
+    this.load();
 
     if (this.hasRefreshIntervalValue) {
-      this.startRefreshing()
+      this.startRefreshing();
     }
   }
 
   itemTargetConnected(target) {
-    console.log("itemTargetConnected:", target)
+    console.log("itemTargetConnected:", target);
   }
 
   itemTargetDisconnected(target) {
-    console.log("itemTargetDisconnected:", target)
+    console.log("itemTargetDisconnected:", target);
   }
 
   disconnect() {
-    this.stopRefreshing()
+    this.stopRefreshing();
   }
 
   load() {
     fetch(this.urlValue)
-      .then(response => response.text())
-      .then(html => {
-        this.element.innerHTML = html
-      })
+      .then((response) => response.text())
+      .then((html) => {
+        this.element.innerHTML = html;
+      });
   }
 
   startRefreshing() {
     this.refreshTimer = setInterval(() => {
-      this.load()
-    }, this.refreshIntervalValue)
+      this.load();
+    }, this.refreshIntervalValue);
   }
 
   stopRefreshing() {
     if (this.refreshTimer) {
-      clearInterval(this.refreshTimer)
+      clearInterval(this.refreshTimer);
     }
   }
 }

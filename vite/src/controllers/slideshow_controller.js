@@ -1,33 +1,36 @@
-import { Controller } from "@hotwired/stimulus"
+import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = [ "slide" ]
-  static classes = [ "currentSlide" ]
-  static values = { index: Number }
+  static targets = ["slide"];
+  static classes = ["currentSlide"];
+  static values = { index: Number };
 
   next() {
     if (this.indexValue < this.lastIndex) {
-      this.indexValue++
+      this.indexValue++;
     }
   }
 
   previous() {
     if (this.indexValue > 0) {
-      this.indexValue--
+      this.indexValue--;
     }
   }
 
   indexValueChanged() {
-    this.render()
+    this.render();
   }
 
   render() {
     this.slideTargets.forEach((element, index) => {
-      element.classList.toggle(this.currentSlideClass, index == this.indexValue)
-    })
+      element.classList.toggle(
+        this.currentSlideClass,
+        index == this.indexValue
+      );
+    });
   }
 
   get lastIndex() {
-    return this.slideTargets.length - 1
+    return this.slideTargets.length - 1;
   }
 }
